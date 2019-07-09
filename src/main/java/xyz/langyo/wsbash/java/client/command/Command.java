@@ -14,15 +14,13 @@
   limitations under the License.
  */
 
-package net.mcbbs.app.desktop.java.main.client.command;
+package xyz.langyo.wsbash.java.client.command;
 
 import com.google.gson.JsonObject;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import static net.mcbbs.app.desktop.java.Constants.DEFAULT_PARSER;
 public class Command {
     private static final CommandParser DEFAULT_CPARSER = new CommandParser();
     private final CommandType type;
@@ -31,6 +29,7 @@ public class Command {
     private final String method;
     private final List<String> args;
     public Command(CommandType type, String pkgName, String namespace, String method, List<String> args, UUID taskId){
+        // TODO 待修改
         this.type = type;
         this.pkgName = pkgName;
         this.namespace = namespace;

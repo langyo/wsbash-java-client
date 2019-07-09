@@ -14,8 +14,13 @@
   limitations under the License.
  */
 
-package net.mcbbs.app.desktop.java.main.client.net;
+package xyz.langyo.wsbash.java.client.command;
 
-public class WSNetController {
+public enum CommandType {
+    EXECUTE,DATA;
 
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
 }

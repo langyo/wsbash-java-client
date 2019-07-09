@@ -14,7 +14,7 @@
   limitations under the License.
  */
 
-package net.mcbbs.app.desktop.java.main.client.command.task;
+package xyz.langyo.wsbash.java.client.command.task;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;

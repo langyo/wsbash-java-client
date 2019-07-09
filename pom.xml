@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.wsbash.java.client</groupId>
-    <artifactId>WebSocket Bash Client for Java</artifactId>
+    <groupId>xyz.langyo.wsbash.java.client</groupId>
+    <artifactId>WebSocketBashClientForJava</artifactId>
     <version>0.1.0</version>
 
     <repositories>

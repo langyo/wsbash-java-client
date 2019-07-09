@@ -14,13 +14,12 @@
   limitations under the License.
  */
 
-package net.mcbbs.app.desktop.java.main.client.net;
+package xyz.langyo.wsbash.java.client;
 
-import net.mcbbs.app.desktop.java.main.client.command.CommandDispatcher;
-import net.mcbbs.app.desktop.java.main.client.command.CommandParser;
+import xyz.langyo.wsbash.java.client.command.CommandDispatcher;
+import xyz.langyo.wsbash.java.client.command.CommandParser;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
-
 import java.net.URI;
 
 public class WSClient extends WebSocketClient {

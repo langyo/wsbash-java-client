@@ -14,15 +14,14 @@
   limitations under the License.
  */
 
-package net.mcbbs.app.desktop.java.main.client.command;
+package xyz.langyo.wsbash.java.client.command;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.mcbbs.app.desktop.java.api.plugin.command.CommandResult;
-import net.mcbbs.app.desktop.java.main.client.command.task.CommandTask;
-import net.mcbbs.app.desktop.java.main.client.net.WSClient;
-
+import xyz.langyo.wsbash.java.client.command.task.CommandResult;
+import xyz.langyo.wsbash.java.client.command.task.CommandTask;
+import xyz.langyo.wsbash.java.client.net.WSClient;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
