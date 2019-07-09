@@ -20,10 +20,10 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * 执行结果与原因结合和类
+ * 执行结果与理由的包装类
  *
  * @param <R> 命令执行结果的参数类型
- * @author yinyangshi InitAuther97
+ * @author yinyangshi InitAuther97 langyo
  */
 public class CommandResult<R> {
     private final CommandResultType type;

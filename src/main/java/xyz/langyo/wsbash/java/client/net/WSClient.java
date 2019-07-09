@@ -18,35 +18,74 @@ package xyz.langyo.wsbash.java.client;
 
 import xyz.langyo.wsbash.java.client.command.CommandDispatcher;
 import xyz.langyo.wsbash.java.client.command.CommandParser;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
 import java.net.URI;
+import javax.websocket.ClientEndpoint;
+import javax.websocket.CloseReason;
+import javax.websocket.ContainerProvider;
+import javax.websocket.OnClose;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.WebSocketContainer;
 
-public class WSClient extends WebSocketClient {
-    public static final WSClient INSTANCE = new WSClient();
-    public CommandParser parser = new CommandParser();
-    private WSClient() {
-        super(URI.create("localhost:2033"));
-        connect();
+/**
+ * ChatServer Client
+ *
+ * @author Jiji_Sasidharan langyo
+ */
+@ClientEndpoint
+public class WSClient {
+    private Session userSession = null;
+    
+    public WSClient(URI endpointURI) {
+        try {
+            WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+            container.connectToServer(this, endpointURI);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @Override
-    public void onOpen(ServerHandshake serverHandshake) {
-        System.out.println("Connection established:"+serverHandshake.getHttpStatus()+","+serverHandshake.getHttpStatusMessage());
+    /**
+     * 连接建立的回调函数
+     *
+     * @param userSession 打开连接时建立的句柄
+     */
+    @OnOpen
+    public void onOpen(Session userSession) {
+        this.userSession = userSession;
     }
 
-    @Override
-    public void onMessage(String s) {
-        CommandDispatcher.DISPATCHER.dispatchAsync(parser.parse(s));
+    /**
+     * 连接关闭的回调函数
+     *
+     * @param userSession 关闭的连接
+     * @param reason 关闭连接的理由
+     */
+    @OnClose
+    public void onClose(Session userSession, CloseReason reason) {
+        System.out.println("Connection closed, reason: ", reason.toString());
+        this.userSession = null;
     }
 
-    @Override
-    public void onClose(int i, String s, boolean b) {
-
+    /**
+     * 接收到消息的回调函数
+     *
+     * @param message 接收到的消息
+     */
+    @OnMessage
+    public void onMessage(String message) {
+        if (this.messageHandler != null) {
+            this.messageHandler.handleMessage(message);
+        }
     }
-
-    @Override
-    public void onError(Exception e) {
-        e.printStackTrace();
+    
+    /**
+     * 发送消息
+     *
+     * @param 消息
+     */
+    public void sendMessage(String message) {
+        this.userSession.getAsyncRemote().sendText(message);
     }
 }
