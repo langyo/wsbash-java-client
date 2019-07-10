@@ -14,10 +14,25 @@
   limitations under the License.
  */
 
-package xyz.langyo.wsbash.java.client.command;
+package net.mcbbs.app.desktop.java.api.plugin.command;
 
-public enum CommandType {
-    SUCCESS,FAIL;
+public enum CommandResultType {
+    /**
+     * 成功执行命令
+     */
+    SUCCESS,
+    /**
+     * 命令执行失败
+     */
+    FAIL,
+    /**
+     * 命令被拒绝执行
+     */
+    DENY,
+    /**
+     * 该命令被无视了
+     */
+    IGNORE;
 
     @Override
     public String toString() {

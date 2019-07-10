@@ -17,7 +17,7 @@
 package xyz.langyo.wsbash.java.client.command;
 
 public enum CommandType {
-    EXECUTE,DATA;
+    EXECUTE, DATA;
 
     @Override
     public String toString() {

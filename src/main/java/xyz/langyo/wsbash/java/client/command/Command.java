@@ -23,7 +23,7 @@ import xyz.langyo.wsbash.java.client.command.*;
 
 public class Command {
     public final CommandType type;
-    public final CommandStateType state;
+    public final CommandResultType state;
     public final List<String> methodPath;
     public final List<String> args;
 
