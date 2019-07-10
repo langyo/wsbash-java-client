@@ -29,6 +29,19 @@ public class Command {
 
     public Command(String cmd){
         List<String> parts = CommandParser.parse(cmd);
+        switch(parts.get(0)) {
+            case EXECUTE:
+                methodPath = CommandMethodPool.getCurrentExecuteMethodPath(parts.subList(1, parts.size()));
+                args = parts.subList(methodPath.size() + 1, parts.size());
+                break;
+            case DATA:
+                methodPath = CommandMethodPool.getCurrentDataMethodPath(parts.subList(1, parts.size()));
+                args = parts.subList(methodPath.size() + 2, parts.size());
+                state = parts.get(methodPath.size() + 1);
+                break;
+            default:
+                throw new Exception("Unknown command!");
+        }
 
     }
 
