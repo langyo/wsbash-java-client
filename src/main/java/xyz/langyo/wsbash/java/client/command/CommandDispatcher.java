@@ -16,11 +16,7 @@
 
 package xyz.langyo.wsbash.java.client.command;
 
-import com.google.common.collect.Lists;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import xyz.langyo.wsbash.java.client.command.task.CommandResult;
-import xyz.langyo.wsbash.java.client.command.task.CommandTask;
+import xyz.langyo.wsbash.java.client.command.*;
 import xyz.langyo.wsbash.java.client.net.WSClient;
 import java.util.List;
 import java.util.UUID;
@@ -32,8 +28,7 @@ public final class CommandDispatcher {
     public static final CommandDispatcher DISPATCHER = new CommandDispatcher();
     public static final List<CommandTask> TASKS = Lists.newArrayList();
 
-    private CommandDispatcher() {
-    }
+    private CommandDispatcher() { }
 
     public final void dispatchAsync(Command command) {
         switch (command.getType()) {
@@ -64,8 +59,6 @@ public final class CommandDispatcher {
     }
 
     public final void send(Command command) {
-        JsonObject jo = command.asGJson();
-        jo.getAsJsonArray("args").add("id="+ UUID.randomUUID().toString());
-        WSClient.INSTANCE.send(command.asJson());
+        WSClient.send(command.toString());
     }
 }

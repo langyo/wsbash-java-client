@@ -16,61 +16,32 @@
 
 package xyz.langyo.wsbash.java.client.command;
 
-import com.google.gson.JsonObject;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import xyz.langyo.wsbash.java.client.command.*;
 
 public class Command {
-    private static final CommandParser DEFAULT_CPARSER = new CommandParser();
-    private final CommandType type;
-    private final String pkgName;
-    private final String namespace;
-    private final String method;
-    private final List<String> args;
-    public Command(CommandType type, String pkgName, String namespace, String method, List<String> args, UUID taskId){
-        // TODO 待修改
-        this.type = type;
-        this.pkgName = pkgName;
-        this.namespace = namespace;
-        this.method = method;
-        this.args = args==null? Collections.emptyList() :args;
-    }
+    public final CommandType type;
+    public final CommandStateType state;
+    public final List<String> methodPath;
+    public final List<String> args;
 
-    public CommandType getType() {
-        return type;
-    }
+    public Command(String cmd){
+        List<String> parts = CommandParser.parse(cmd);
 
-    public String getPkgName() {
-        return pkgName;
-    }
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public List<String> getArgs() {
-        return args;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(type).append(" ").append(pkgName).append(" ").append(namespace).append(" ").append(method);
-        for(String key:args){
+        sb.append(type);
+        for(String key:methodPath) {
+            sb.append(" ").append(key);
+        }
+        if(type == CommandType.DATA) sb.append(" ").append(state);
+        for(String key:args) {
             sb.append(" ").append(key);
         }
         return sb.toString();
-    }
-
-    public String asJson(){
-        return DEFAULT_CPARSER.format(this);
-    }
-
-    public JsonObject asGJson(){
-        return DEFAULT_PARSER.parse(asJson()).getAsJsonObject();
     }
 }

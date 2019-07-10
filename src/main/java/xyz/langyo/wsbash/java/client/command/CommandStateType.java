@@ -16,13 +16,11 @@
 
 package xyz.langyo.wsbash.java.client.command;
 
-import java.util.List;
+public enum CommandType {
+    SUCCESS,FAIL;
 
-public class CommandParser {
-    public static List<String> parse(String command){
-
-    }
-    public static String format(Command command) {
-       return command.toString();
+    @Override
+    public String toString() {
+        return name().toLowerCase();
     }
 }
