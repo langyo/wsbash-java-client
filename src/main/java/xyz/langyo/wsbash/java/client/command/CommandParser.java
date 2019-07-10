@@ -20,7 +20,10 @@ import java.util.List;
 
 public class CommandParser {
     public static List<String> parse(String command){
-
+        List<String> parts = new List<String>();
+        for(int i = command.indexOf(" "), lastI = i; i != -1; lastI = i + 1, i = command.indexOf(" ", i)) {
+            parts.add(command.substring(lastI, i));
+        }
     }
     public static String format(Command command) {
        return command.toString();
