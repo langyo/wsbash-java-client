@@ -14,10 +14,11 @@
   limitations under the License.
  */
 
-package xyz.langyo.wsbash.java.client.command.task;
+package xyz.langyo.wsbash.java.client.command;
 
-import com.google.common.collect.Lists;
+import xyz.langyo.wsbash.java.client.command.CommandResultType;
 import java.util.List;
+import java.util.Arrays;
 
 /**
  * 执行结果与理由的包装类
@@ -35,12 +36,12 @@ public class CommandResult<R> {
      */
     public CommandResult(CommandResultType type, R... result) {
         this.type = type;
-        this.result = Lists.newArrayList(result);
+        this.result = Arrays.asList(result);
     }
 
     /**
      * 获得命令结果Type
-     * @return the type of the command
+     * @return 命令类型
      */
     public CommandResultType getType() {
         return type;
@@ -48,7 +49,7 @@ public class CommandResult<R> {
 
     /**
      * 获得命令结果的返回值
-     * @return the list of the result, not the copy.
+     * @return 命令执行结果
      */
     public List<? extends R> getResult() {
         return result;

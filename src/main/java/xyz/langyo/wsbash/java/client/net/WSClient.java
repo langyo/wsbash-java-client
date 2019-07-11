@@ -14,7 +14,7 @@
   limitations under the License.
  */
 
-package xyz.langyo.wsbash.java.client;
+package xyz.langyo.wsbash.java.client.net;
 
 import xyz.langyo.wsbash.java.client.command.CommandDispatcher;
 import xyz.langyo.wsbash.java.client.command.CommandParser;
@@ -29,7 +29,7 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
 /**
- * ChatServer Client
+ * Single Client
  *
  * @author Jiji_Sasidharan langyo
  */
@@ -64,7 +64,7 @@ public class WSClient {
      */
     @OnClose
     public void onClose(Session userSession, CloseReason reason) {
-        System.out.println("Connection closed, reason: ", reason.toString());
+        System.out.println(reason.toString());
         this.userSession = null;
     }
 
@@ -75,15 +75,13 @@ public class WSClient {
      */
     @OnMessage
     public void onMessage(String message) {
-        if (this.messageHandler != null) {
-            this.messageHandler.handleMessage(message);
-        }
+        System.out.println(message);
     }
     
     /**
      * 发送消息
      *
-     * @param 消息
+     * @param message 消息
      */
     public void sendMessage(String message) {
         this.userSession.getAsyncRemote().sendText(message);

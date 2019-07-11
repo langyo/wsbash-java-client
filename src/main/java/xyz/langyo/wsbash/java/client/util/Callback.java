@@ -14,28 +14,8 @@
   limitations under the License.
  */
 
-package xyz.langyo.wsbash.java.client.command;
+package xyz.langyo.wsbash.java.client.util;
 
-public enum CommandResultType {
-    /**
-     * 成功执行命令
-     */
-    SUCCESS,
-    /**
-     * 命令执行失败
-     */
-    FAIL,
-    /**
-     * 命令被拒绝执行
-     */
-    DENY,
-    /**
-     * 该命令被无视了
-     */
-    IGNORE;
-
-    @Override
-    public String toString() {
-        return name().toLowerCase();
-    }
+public interface Callback<T> {
+    void callback(T arg);
 }

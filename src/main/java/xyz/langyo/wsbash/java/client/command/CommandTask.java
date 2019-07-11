@@ -14,14 +14,11 @@
   limitations under the License.
  */
 
-package xyz.langyo.wsbash.java.client.command.task;
+package xyz.langyo.wsbash.java.client.command;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import net.mcbbs.app.desktop.java.api.plugin.Client;
-import net.mcbbs.app.desktop.java.api.plugin.command.CommandResult;
-import net.mcbbs.app.desktop.java.main.client.command.Command;
-import net.mcbbs.app.desktop.java.util.Callback;
+import xyz.langyo.wsbash.java.client.command.CommandResult;
+import xyz.langyo.wsbash.java.client.command.Command;
+import xyz.langyo.wsbash.java.client.util.Callback;
 
 import java.util.Map;
 import java.util.Set;

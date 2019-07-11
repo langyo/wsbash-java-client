@@ -16,7 +16,11 @@
 
 package xyz.langyo.wsbash.java.client.command;
 
-import xyz.langyo.wsbash.java.client.command.*;
+import xyz.langyo.wsbash.java.client.command.Command;
+import xyz.langyo.wsbash.java.client.command.CommandTask;
+import xyz.langyo.wsbash.java.client.command.CommandType;
+import xyz.langyo.wsbash.java.client.command.CommandResult;
+import xyz.langyo.wsbash.java.client.command.CommandResultType;
 import xyz.langyo.wsbash.java.client.net.WSClient;
 import java.util.List;
 import java.util.UUID;
@@ -25,15 +29,14 @@ import java.util.concurrent.Executors;
 
 public final class CommandDispatcher {
     public static final ExecutorService SERVICE = Executors.newFixedThreadPool(16);
-    public static final CommandDispatcher DISPATCHER = new CommandDispatcher();
     public static final List<CommandTask> TASKS = Lists.newArrayList();
 
     private CommandDispatcher() { }
 
     public final void dispatchAsync(Command command) {
         switch (command.getType()) {
-            case EXECUTE:
-                CommandTask ct = new CommandTask(command,UUID.randomUUID()).callback(arg-> {
+            case CommandType.EXECUTE:
+                CommandTask ct = new CommandTask(command,UUID.randomUUID()).callback(arg -> {
                     CommandResult result = (CommandResult) arg.get("result");
                     UUID taskid = (UUID) arg.get("taskId");
                     JsonObject jsonObject = ((Command) arg.get("command")).asGJson();
@@ -50,7 +53,7 @@ public final class CommandDispatcher {
                 TASKS.add(ct);
                 SERVICE.submit(ct);
                 break;
-            case DATA:
+            case CommandType.DATA:
                 break;
             default: {
                 break;
